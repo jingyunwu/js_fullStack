@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cat</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .cat {
+            width: 117px;
+            height: 201px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(-50%, -50%, 0);
+
+        }
+
+        .maoshen {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 2;
+        }
+
+        .maowei {
+            width: 64px;
+            height: 194px;
+            position: absolute;
+            top: -182px;
+            left: 0;
+            transform-origin: 40% 96%;
+            animation: an_maowei 3s ease-in-out infinite;
+        }
+
+        @keyframes an_maowei {
+            0% {
+                transform: rotateZ(-5deg);
+            }
+
+            50% {
+                transform: rotateZ(0);
+            }
+
+            100% {
+                transform: rotateZ(-5deg);
+            }
+
+        }
+
+        .maozhua {
+            width: 34px;
+            height: 81px;
+            position: absolute;
+            right: 13px;
+            bottom: -63px;
+            transform-origin: 60% 4%;
+            z-index: 1;
+            animation: an_maozhua 3s ease-in-out infinite;
+        }
+        @keyframes an_maozhua {
+            0% {
+                transform: rotate(0);
+            }
+            50% {
+                transform: rotate(-11deg);
+            }
+            100% {
+                transform: rotate(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cat">
+        <div class="maoshen"><img src="./img/maoshenti.png" alt=""></div>
+        <div class="maozhua"><img src="./img/maozhua.png" alt=""></div>
+        <div class="maowei"><img src="./img/maowei.png" alt=""></div>
+    </div>
+</body>
+
+</html>
