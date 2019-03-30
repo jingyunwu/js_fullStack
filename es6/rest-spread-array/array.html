@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>array</title>
+</head>
+<body>
+    <script>
+      const arr = [17, 18, 30, 45];
+      //返回第一个
+      const this_age = arr.find(function(age){
+          return age > 18;
+      })
+      //过滤    没有任何一个的时候是 空数组[]
+      const this_ages = arr.filter(function(age){
+          return age > 18;
+      })
+
+      const this_every = arr.every(age => age >= 18);
+
+      const this_some = arr.some(age => age < 18);
+
+    </script>
+</body>
+</html>
