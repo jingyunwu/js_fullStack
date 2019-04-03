@@ -5,7 +5,7 @@ function lou(n) {
         return 1  
     if(n === 2)
         return 2
-        
+    // 缺点    
         
     return lou(n-1) + lou(n-2);
 
