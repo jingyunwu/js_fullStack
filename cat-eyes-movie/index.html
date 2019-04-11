@@ -119,6 +119,60 @@
         </li> -->
       </ul>
     </section>
+    <!-- section6 -->
+    <section class="section-seperate section-expander">
+      <p class="section-til pos_r">讨论
+        <span class="join-comment">参与讨论</span>
+      </p>
+      <ul class="movie-comment">
+        <li class="comment-item">
+          <div class="comment-item__sort">
+            <span>全部</span>
+            <span class="comment-item__num"></span>
+          </div>
+        </li>
+        <li class="comment-item">
+          <div class="comment-item__sort">
+            <span>好评</span>
+            <span class="comment-item__num" id="good">3422</span>
+          </div>
+        </li>
+        <li class="comment-item">
+          <div class="comment-item__sort">
+            <span>差评</span>
+            <span class="comment-item__num" id="bad">33</span>
+          </div>
+        </li>
+        <li class="comment-item">
+          <div class="comment-item__sort">
+            <span>点映</span>
+            <span class="comment-item__num" id="dy">422</span>
+          </div>
+        </li>
+        <li class="comment-item">
+          <div class="comment-item__sort">
+            <span>购票</span>
+            <span class="comment-item__num" id="bought">344522</span>
+          </div>
+        </li>
+        <li class="comment-item">
+          <div class="comment-item__sort">
+            <span>认证作者</span>
+            <span class="comment-item__num" id="author">11</span>
+          </div>
+        </li>
+        <li class="comment-item">
+          <div class="comment-item__sort">
+            <span>同城</span>
+            <span class="comment-item__num" id="sameCity">817</span>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <!-- section7 -->
+    <section class="section-seperate section-expander">
+      <p class="section-til">精选</p>
+    </section>
     <!-- toast -->
     <div id="toast">
       <div class="weui-mask_transparent"></div>
@@ -149,6 +203,7 @@
         celebrity(res.data.person);
         booking(res.data.booking);
         photo(res.data.pictures);
+        commentNum(res.data.commentNum);
         
         }
       })
@@ -220,7 +275,14 @@
         $('#bookingTotal').html(e.bookingTotal);
 
       }
-
+      function commentNum(e) {
+        $('#good').html(e.good);
+        $('#bad').html(e.bad);
+        $('#dy').html(e.dy);
+        $('#bought').html(e.bought);
+        $('#author').html(e.author);
+        $('#sameCity').html(e.sameCity);
+      }
       // 剧照
       function photo(e) {
         for (let m of e) {
