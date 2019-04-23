@@ -1,2 +1,18 @@
 <!--pages/mian/index.wxml-->
-<view class="container">首页</view>
+<view class="container">
+  <scroll-view>
+    <view class="header">
+      <view class="header_hd">
+        <text>{{city}} </text>
+        <view class="downtips"> </view>
+      </view>
+      <view class="header_bd" >
+        <view class="header_bd-btn header_bd-hot">正在上映</view>
+        <view class="header_bd-btn header_bd-waiting">即将上映</view>
+      </view>
+        <view class="header_ft">
+            <image src="../../images/icon_magnifier.png"></image>
+        </view>
+    </view>
+  </scroll-view>
+</view>
