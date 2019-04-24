@@ -1,4 +1,7 @@
 /* pages/mian/index.wxss */
+.slide-image {
+    width: 100%;
+}
 view.text {
     display: flex;
     align-items: center;
