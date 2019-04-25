@@ -15,7 +15,7 @@
         </view>
     </view>
     <swiper indicator-dots="true" autoplay="true" interval="3000"> 
-      <block wx:for="{{imgeUrls}}" wx:key="{{index}}">
+      <block wx:for="{{imgUrls}}" wx:key="{{index}}">
         <swiper-item>
           <image class="slide-image" src="{{item}}" />
             
@@ -42,6 +42,12 @@
             <text class="score" wx:if="{{item.isShow == 1}}">{{item.grade}}
               <text stay="font-size:12px;">分</text>
             </text>
+          </view>
+        </view>
+
+        <view class="item_right">
+          <view> 
+            <text class="buy" style="background-color:{{item.isShow == 0 ? '#52b0eb' : '#ef4238' }}">{{item.isShow == 0 ? '预售' : '购票' }}</text>
           </view>
         </view>
       </view>
