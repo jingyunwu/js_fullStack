@@ -1,0 +1,70 @@
+//index.js
+//获取应用实例
+import {
+  API_BASE
+} from '../../config/api'
+const app = getApp()
+
+Page({
+  data: {
+    entities: [],
+    currentPage: 1,
+    totalPages: 1,
+    isLoading: false,
+  },
+  //事件处理函数
+  bindViewTap: function() {
+    wx.navigateTo({
+      url: '../logs/logs'
+    })
+  },
+  onLoad: function () {
+    wx.request({
+      url: API_BASE,
+      success: (res) => {
+        console.log(res)
+        this.setData({
+          isLoading: false,
+          currentPage: 1,
+          total: res.data.data.total,
+          isEarth: false,
+          totalPages: res.data.data.totalPages,
+          entities: res.data.data.articles
+        })
+      }
+    })
+  },
+  getUserInfo: function(e) {
+    console.log(e)
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
+  },
+  onReachBottom() {
+    let { currentPage, totalPages, isLoading } = this.data
+    if (currentPage >= totalPages || isLoading) {
+      return
+    }
+    this.setData({
+      isLoading: true
+    });
+    currentPage = currentPage + 1
+    wx.request({
+      url: API_BASE,
+      success: (response) => {
+        const entities = [...this.data.entities,...response.data.data.articles];
+        this.setData({
+          entities,
+          currentPage,
+          isLoading: false,
+          total: response.data.data.total,
+          isEarth: currentPage >= totalPages,
+          totalPages: response.data.data.totalPages,
+          entities: entities
+        })
+      }
+    })
+  }
+})
