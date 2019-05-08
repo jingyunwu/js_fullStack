@@ -66,5 +66,23 @@ Page({
         })
       }
     })
+  },
+  onPullDownRefresh () {
+    // console.log('pulldown');
+    this.data.currentPage = 1;
+    wx.request({
+      url: API_BASE,
+      success: (response) => {
+        const entities = response.data.data.articles;
+        this.setData({
+          entities,
+          isLoading: false,
+          total: response.data.data.total,
+          totalPages: response.data.data.totalPages,
+          currentPage: 1,
+          isEarth: false
+        })
+      }
+    })
   }
 })
