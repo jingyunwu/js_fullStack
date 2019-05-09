@@ -1,7 +1,9 @@
 {
   "pages": [
+    "pages/countdown/countdown",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "components/countdown/countdown"
   ],
   "window": {
     "backgroundTextStyle": "light",
