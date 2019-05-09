@@ -1,0 +1,5 @@
+<view class="container">
+  <view class="userinfo">
+    <button bindtap="showPopup">点我</button>
+  </view>
+</view>
