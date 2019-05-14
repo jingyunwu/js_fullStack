@@ -2,9 +2,7 @@
   "pages": [
     "pages/trends/trends",
     "pages/news/news",
-    "pages/index/index",
     "pages/issues/issues",
-    
     "pages/pulls/pulls",
     "pages/me/me"
   ],

@@ -8,7 +8,8 @@
 		"minified": true,
 		"newFeature": true,
 		"autoAudits": false,
-		"checkInvalidKey": true
+		"checkInvalidKey": true,
+		"nodeModules": true
 	},
 	"appid": "wx178c8e49dca68475",
 	"projectname": "github-programm",
