@@ -42,3 +42,27 @@ export const getWeather = (lat, lon) => {
         }
     })
 }
+
+// 往数据库中查询到用户的openid和具体的时间段， 然后获取信息
+export const getEmotionByOpenidAndDate = (openid, year) => {
+    const _ = db.command
+    year = parseInt(year)
+    month = parseInt(month)
+    let start = new Date(year, month - 1, 1).getTime()
+    let end = new Date(year, month, 1).getTime()
+    return db.collection('diary').where({
+        openid,
+        tsModified: _.gte(start).and(_.lt(end))
+    })
+    .get()
+
+}
+
+export const jscode2session = (code) => {
+    return wx.cloud.callFunction({
+        name: 'jscode2session',
+        data: {
+            code
+        }
+    })
+}

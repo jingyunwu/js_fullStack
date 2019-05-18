@@ -1,8 +1,7 @@
 {
   "pages": [
-    "pages/diary/index",
-    "pages/index/index"
-    
+    "pages/index/index",
+    "pages/diary/index"
   ],
   "window": {
     "navigationStyle": "custom"

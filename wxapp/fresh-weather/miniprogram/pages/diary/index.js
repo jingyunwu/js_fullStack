@@ -1,95 +1,155 @@
+// miniprogram/pages/index/index.js
 const app = getApp()
-import { addEmotion, geocoder, getWeather } from '../../lib/api'
-
+import { dateFormat } from '../../lib/utils'
+const globalData = app.globalData
+import { jscode2session, getEmotionByOpenidAndDate, addEmotion } from '../../lib/api'
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    backgroundImage: '../../images/cloud.jpg',
-    backgroundColor: '#62aadc',
-    address: '定位中',
-    lat: 40.056974,
-    lon: 116.307689,
-    paddingTop: 0,
-    scale: 1
+    activeEmotion: 'serene',
+    todayEmotion: '',
+    avatarUrl: globalData.avatarUrl,
+    nickname: globalData.nickname,
+    emotions: ['serene', 'hehe', 'ecstatic', 'sad', 'terrified'],
+    colors: {
+      serene: '#64d9fe',
+      hehe: '#d3fc1e',
+      ecstatic: '#f7dc0e',
+      sad: '#ec238a',
+      terrified: '#ee1aea'
+    },
+    daysStyle: [],
+    auth: -1
   },
-  onLoad() {
-    let self = this
-    addEmotion('213423', 'sdsd')
-    wx.getSystemInfo({
-      success: (result) => {
-        // console.log(result)
-        let width = result.windowWidth
-        let scale = width / 375
-        self.setData({
-          width,
-          scale,
-          paddingTop: result.statusBarHeight + 12
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+
+  },
+  // 封装一下获取用户权限的方法
+  getScope(success, fail, name = 'scope.userInfo') {
+    wx.getSetting({
+      success: (res) => {
+        if (res.authSetting[name]) {
+          typeof success === 'function' && success()
+        } else {
+          typeof fail === 'function' && fail()
+        }
+      },
+      fail: () => {},
+      complete: () => {}
+    }); 
+  },
+  getUserInfo() {
+    if (!globalData.nickname || !globalData.avatarUrl) {
+      this._getUserInfo((res) => {
+        this.setData({
+          nickname: res.nickname,
+          avatarUrl: res.avatarUrl
+        })
+        globalData.nickname = res.nickname
+        globalData.avatarUrl = res.avatarUrl
+      })
+    }
+    const that = this
+    let openid = wx.getStorageSync('openid')
+    function callback() {
+      that.setData({
+        auth: 1,
+        openid
+      })
+      if (globalData.currentMonthData && globalData.currentMonthData.length) {
+        const now = new Date()
+      } else {
+        that.setCalendarColor()
+      }
+      if (openid) {
+        callback()
+      } else {
+        this.getUserOpenId((res) => {
+          openid = res.result.openid
+          callback()
+        }, () => {
+          this.setData({
+            auth: 0
+          })
+        })
+      }
+    }
+  },
+  getUserOpenId(success, fail) {
+    wx.login({
+      success: (res) => {
+        jscode2session(res.code).then((res) => {
+          let { openid = '', session_key = ''} = res.result || {}
+          if (openid && session_key) {
+            wx.setStorage({
+              key: 'openid',
+              data: openid
+            })
+            typeof success === 'function' && success(res)
+          } else {
+            typeof fail === 'function' && fail()
+          }
         })
       },
-      fail: () => { },
-      complete: () => { }
+      fail: () => {},
+      complete: () => {}
     });
-    this.getLocation()
+      
   },
-  getLocation() {
-    wx.getLocation({
-      type: 'gcj02',
-      success: this.updateLocation,
-      fail: (e) => {
-        this.openLocation()
-      }
-    })
-  },
-  updateLocation(res) {
-    let { latitude: lat, longitude: lon, name } = res
 
-    let data = {
-      lat,
-      lon
-    }
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
 
-    if (name) {
-      data.address = name
-    }
-    console.log(res)
-    this.setData(data)
-    this.getAddress(lat, lon, name)
   },
-  openLocation() {
-    wx.showToast({
-      title: '检测到您未授权使用位置权限，请先开启',
-      icon: 'none',
-      duration: 3000
-    })
-  },
-  getAddress(lat, lon, name) {
-    wx.showLoading({
-      title: '定位中',
-      mask: true
-    })
-    let fail = (e) => {
-      this.setData({
-        address: name || '南昌市'
-      })
-      wx.hideLoading()
-    }
 
-    geocoder(lat, lon, (res) => {
-      wx.hideLoading()
-      let result = (res.data || {}).result
-      console.log(res)
-      if (res.statusCode === 200 && result && result.address) {
-        let { address, formatted_addresses, address_component } = result
-        if (formatted_addresses && (formatted_addresses.recommend || formatted_addresses.rought)) {
-          address = formatted_addresses.recommend || formatted_addresses.rought
-        }
-        let { province, city, district: county } = address_component
-        this.setData({
-          province,
-          city,
-          county,
-          address: name || address
-        })
-      }
-    }, fail)
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
   }
 })
