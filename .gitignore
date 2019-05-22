@@ -1,1 +1,10 @@
-node_modules
+node_modules   
+.idea
+.vscode
+.history
+.DS_Store
+npm-debug.log
+yarn.lock
+dist
+.cache
+.dll-link-plugin
