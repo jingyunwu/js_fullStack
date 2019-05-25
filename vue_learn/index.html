@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app" class="">
+        <!-- {{message}}
+        <p class="coll">fjkosd</p>
+        <p class="good" v-bind:class="{cool: isGood}">天气真好</p>
+        <p class="good" v-bind:class="isGood ? 'cool': 'notpull'">天气真好</p>
+        <p class="cool" v-bind:class="[activeClass]">fjkosd</p> -->
+        <!-- <ul>
+            <li v-for="a in todos">{{a.text}}</li>
+        </ul> -->
+        <!-- <p>{{content}}</p>
+        <input type="text" v-model="content"> -->
+        <p class="coll" v-on:click="reverseMsg">{{msg}}</p>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+
+            data: {
+                // message: 'hello world',
+                // isGood: false,
+                // activeClass: 'active'
+                // todos:[
+                //     {text: '学习vue'},
+                //     {text: '学习js'},
+                //     {text: '写项目'},
+                // ]
+                content: '',
+                msg: 'dfjdk'
+            },
+            methods: {
+                reverseMsg() {
+                    this.msg = this.msg.split('').reverse().join('')
+                }
+            }
+        })
+    </script>
+</body>
+</html>
