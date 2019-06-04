@@ -1,0 +1,19 @@
+<template>
+  <div class="look">
+    {{message}}
+    {{$route.params.id}}
+    <router-view/>
+  </div>
+</template>
+
+
+<script>
+export default {
+  name: 'look',
+  data () {
+    return {
+      message: '来看我呀！'
+    }
+  }
+}
+</script>
