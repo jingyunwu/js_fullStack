@@ -5,26 +5,26 @@
           <h3>系统登录</h3>
         </FormItem>
         <FormItem prop="username">
-            <Input type="text" v-model="formLogin.user" placeholder="用户名">
+            <i-input type="text" v-model="formLogin.user" placeholder="用户名">
                 <Icon type="ios-person-outline" slot="prepend"></Icon>
-            </Input>
+            </i-input>
         </FormItem>
         <FormItem prop="password">
-            <Input type="password" v-model="formLogin.password" placeholder="密码">
+            <i-input type="password" v-model="formLogin.password" placeholder="密码">
                 <Icon type="ios-lock-outline" slot="prepend"></Icon>
-            </Input>
+            </i-input>
         </FormItem>
         <FormItem>
             <Checkbox v-model="formLogin.remember">记住密码</Checkbox>
         </FormItem>
         <FormItem>
           <Row>
-            <Col :xs="{ span:4, offset: 6}">
+            <i-col :xs="{ span:4, offset: 6}">
             <Button type="primary" @click="handleSubmit('formLogin')">登录</Button>
-            </Col>
-            <Col :xs="{ span:4, offset: 6}">
+            </i-col>
+            <i-col :xs="{ span:4, offset: 6}">
             <Button type="primary" @click="formLoginRules('formLogin')">重置</Button>
-            </Col>
+            </i-col>
           </Row>
             <!-- <Button type="primary" @click="handleSubmit('formInline')">提交</Button> -->
         </FormItem>
@@ -69,8 +69,7 @@ export default {
     handleSubmit (name) {
       this.$refs[name].validate(valid => {
         sessionStorage.setItem('user', JSON.stringify(this.formLogin.username))
-      })
-      if (valid) {
+        if (valid) {
         this.$Message.success('提交成功')
         this.$router.push({ path: '/table' })
       } else {
@@ -84,6 +83,8 @@ export default {
         sessionStorage.removeItem('username')
         sessionStorage.removeItem('password')
       }
+      })
+      
     }
   },
  
