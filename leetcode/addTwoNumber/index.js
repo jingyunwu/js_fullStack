@@ -51,7 +51,7 @@ function LinkedNode(val) {
        
     }
     carry && (ans.push(carry)); // 最后如果有进位
-    ans.reverse(); // 反过来
+    // ans.reverse(); // 反过来
     // return ans.join('');  一种解法
 
 
