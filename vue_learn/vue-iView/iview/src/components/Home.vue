@@ -2,14 +2,14 @@
   <div class="home">
     <div class="layout">
       <Row type="flex">
-        <Col :span="spanLeft" class="layout-menu-left">
+        <i-col :span="spanLeft" class="layout-menu-left">
           <div class="layout-logo-left">
             <span class="layout-text">Admin 管理系统</span>
           </div>
-          <Menu theme="dark">
+          <Menu theme="dark" mode="vertical" width="auto">
             <Submenu name="1">
               <template slot="title">
-                <Icon type="ios-paper"/>导航一
+                <Icon type="ios-home"/>导航一
               </template>
               <MenuItem name="1-1">文章管理</MenuItem>
               <MenuItem name="1-2">评论管理</MenuItem>
@@ -17,14 +17,19 @@
             </Submenu>
             <Submenu name="2">
               <template slot="title">
-                <Icon type="ios-people"/>导航二
+                <Icon type="md-paw"/>导航二
               </template>
               <MenuItem name="2-1">新增用户</MenuItem>
               <MenuItem name="2-2">活跃用户</MenuItem>
             </Submenu>
             <Submenu name="3">
               <template slot="title">
-                <Icon type="ios-stats"/>导航三
+                <Icon type="md-paw"/>导航三
+              </template>
+            </Submenu>
+            <Submenu name="4">
+              <template slot="title">
+                <Icon type="md-stats"/>charts
               </template>
               <MenuGroup title="使用">
                 <MenuItem name="3-1">新增和启动</MenuItem>
@@ -37,16 +42,16 @@
               </MenuGroup>
             </Submenu>
           </Menu>
-        </Col>
-        <Col :span="spanRight">
+        </i-col>
+        <i-col :span="spanRight">
           <div class="layout-header">
             <Button type="text">
               <Icon type="md-menu" size="32"/>
             </Button>
-            <div class="userInfo">
+            <div class="userinfo">
               <Dropdown>
                 <a href="javascript:void(0)">
-                  {{userName}}
+                  {{username}}
                   <Icon type="ios-arrow-down"></Icon>
                 </a>
                 <DropdownMenu slot="list">
@@ -54,30 +59,39 @@
                   <DropdownItem>退出</DropdownItem>
                 </DropdownMenu>
               </Dropdown>
+              <img :src="imgUrl" width="100%" class="uersinfo-photo">
             </div>
           </div>
-        </Col>
+          <Breadcrumb>
+            <BreadcrumbItem to="/table">首页</BreadcrumbItem>
+            <BreadcrumbItem to="/table/manage">components</BreadcrumbItem>
+          </Breadcrumb>
+          <div class="layout-content">
+            <div class="layout-content-main">
+              <router-view></router-view>
+            </div>
+          </div>
+        </i-col>
       </Row>
     </div>
   </div>
 </template>
 
 <script>
+import BG from "../assets/IMG_3259.jpg"
 export default {
-  name: "Home",
-  data() {
+  name: 'Home',
+  data () {
     return {
-      spanLeft: 5,
       spanRight: 19,
-      userName: ''
+      spanLeft: 5,
+      imgUrl: BG
     }
   },
-  created() {
-    this.userName = JSON.parse(sessionStorage.getItem('username'));
+  created () {
+    this.username = JSON.parse(sessionStorage.getItem('username'))
   }
- 
-  
-};
+}
 </script>
 
 <style scoped>
@@ -92,16 +106,14 @@ export default {
 .layout-menu-left {
   background: #515a6e;
 }
-.layout-logo-left .layout-text{
-  font-size: 23px;
-  color: rgba(255, 255, 255, 0.555);
+.layout-logo-left {
+  width: 100%;
+  height: 10%;
   position: relative;
-  top: 2px;
-  left: 28px;
 }
-.userInfo {
+.userinfo {
   float: right;
-  margin: 5px 20px;
+  margin: 0 15px;
 }
 .ivu-col-span-19 {
   background-color: #eee;
@@ -109,5 +121,18 @@ export default {
 .layout-header {
   background-color: #fff;
   padding: 10px 0;
+}
+.layout-text {
+  position: absolute;
+  font-size: 30px;
+  text-align: center;
+  left: 10%;
+  top: 25%;
+  color: rgba(255, 255, 255, 0.459);
+}
+.uersinfo-photo {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
 }
 </style>
