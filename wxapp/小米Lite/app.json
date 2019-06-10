@@ -1,0 +1,54 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/categories/categories",
+    "pages/discovery/discovery",
+    "pages/cart/cart",
+    "pages/mine/mine"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fe6900",
+    "navigationBarTitleText": "小米Lite",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "#777777",
+    "selectedColor": "#d81e06",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "pages/icon/index.png",
+        "selectedIconPath": "pages/icon/index2.png"
+      },
+      {
+        "pagePath": "pages/categories/categories",
+        "text": "分类",
+        "iconPath": "pages/icon/categories.png",
+        "selectedIconPath": "pages/icon/categories2.png"
+      },
+      {
+        "pagePath": "pages/discovery/discovery",
+        "text": "发现",
+        "iconPath": "pages/icon/discovery.png",
+        "selectedIconPath": "pages/icon/discovery2.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "pages/icon/cart.png",
+        "selectedIconPath": "pages/icon/cart2.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "pages/icon/mine.png",
+        "selectedIconPath": "pages/icon/mine2.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

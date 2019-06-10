@@ -1,0 +1,39 @@
+/**index.wxss**/
+.slide-image{
+  width: 100%;
+}
+view.text {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 10px 10px 10px 12px;
+  font-size: 15px;
+  color: #656565;
+}
+.flex_auto {
+  display: flex;
+  align-items: center;
+}
+view .header {
+  height: 60rpx;
+  background-color: #fe6900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #a3a3a3;
+  font-size: 14px;
+}
+.header .search {
+  border-radius: 10px;
+  width: 1040px;
+  height: 40rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  margin: 10rpx;
+}
+.slide-image {
+  width: 100%;
+  
+}
