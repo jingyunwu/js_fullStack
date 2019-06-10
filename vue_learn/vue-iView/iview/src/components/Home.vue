@@ -45,7 +45,7 @@
             </Button>
             <div class="userInfo">
               <Dropdown>
-                <a href="javascript:void(0)" v-bind="created">
+                <a href="javascript:void(0)">
                   {{userName}}
                   <Icon type="ios-arrow-down"></Icon>
                 </a>
@@ -92,7 +92,12 @@ export default {
 .layout-menu-left {
   background: #515a6e;
 }
-.layout-logo-left {
+.layout-logo-left .layout-text{
+  font-size: 23px;
+  color: rgba(255, 255, 255, 0.555);
+  position: relative;
+  top: 2px;
+  left: 28px;
 }
 .userInfo {
   float: right;
