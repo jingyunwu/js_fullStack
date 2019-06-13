@@ -25,7 +25,7 @@ var mergeTwoLists = function (l1, l2) {
   for (var i = 0, len = ans.length; i< len - 1; i++) {
     ans[i].next = ans[i+1];
   }
-  // console.log(ans);
+  console.log(ans);
   // var node;
 
   // return node;
