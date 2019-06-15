@@ -6,13 +6,15 @@
         <router-link to="/goods">商品</router-link>
       </div>
       <div class="tab-item">
-        <router-link to="/ratings">评论</router-link>
+        <router-link to="ratings">评论</router-link>
       </div>
       <div class="tab-item">
         <router-link to="/seller">商家</router-link>
       </div>
     </div>
-    <router-view></router-view>
+    <keep-alive>
+      <router-view :seller="seller"></router-view>
+    </keep-alive>
   </div>
 </template>
 
@@ -31,7 +33,7 @@ export default {
     'v-header': header
   },
   created () {
-    this.$http.get('https://www.easy-mock.com/mock/5d00f558294a6f025a3f9926/eleme/eleme')
+    this.$http.get('https://www.easy-mock.com/mock/5ca495f2ea0dc52bf3b67fd5/friday/eleme')
       .then(res => {
         console.log(res)
         if (res.data.errno === 0) {
