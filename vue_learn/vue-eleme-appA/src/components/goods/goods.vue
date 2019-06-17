@@ -25,7 +25,7 @@
               <li
                 v-for="(food,index) in item.foods"
                 :key="index"
-                class="food-item border-1px"
+                class="food-item border-1px" @click="selectFood(index, $event)"
               >
                 <div class="icon">
                   <img width="57" height="57" :src="food.icon">
@@ -69,6 +69,7 @@ export default {
       goods: [],
       listHeight: [],
       scrollY: 0,
+      classMap: []
     }
   },
   components: {
