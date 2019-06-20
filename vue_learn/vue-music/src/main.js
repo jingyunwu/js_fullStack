@@ -7,6 +7,7 @@ import { Toast, Loading} from './common/plugin'
 import fastclick from 'fastclick'
 import VueLazyload from 'vue-lazyload'
 import store from './vuex/store'
+import '../static/css/reset.styl'
 
 fastclick.attach(document.body)
 
