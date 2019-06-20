@@ -29,3 +29,28 @@ Toast.install = function (Vue, options) {
     }
   }) 
 }
+
+let Loading = {}
+Loading.install = function (Vue) {
+  let tpl
+  Vue.prototype.$showLoading = () => {
+    if (document.getElementsByClassName('vue-loading').length) {
+      return 
+    }
+    let loadingTpl = Vue.extend({ // 创建构造器，定义好提示信息的模板
+      template: '<div class="vue-loading"></div>'
+    })
+    tpl = new loadingTpl().$mount.$el
+    document.body.appendChild(tpl)
+  }
+  Vue.prototype.$hideLoading = () => {
+    if (document.getElementsByClassName('vue-loading').length) {
+      document.body.removeChild(tpl)
+    }
+  }
+}
+
+export {
+  Toast,
+  Loading
+}
