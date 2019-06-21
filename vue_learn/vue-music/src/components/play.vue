@@ -16,12 +16,58 @@
         <!-- 播放页面的内容 -->
       </div>
     </transition>
+    <!-- 底部的播放器 -->
+    <transition name="mini">
+      <div class="mini-player" v-show="!fullScreen" @click="open">
+        <div class="picture">
+          <div class="imgWrapper" ref="miniWrapper">
+            <img ref="miniImage" :class="cdCls" width="40" v-lazy="(currentSong.al && currentSong.al.picUrl) || (currentSong.artists && currentSong.artists[0].img1v1Url)" height="40">
+          </div>
+        </div>
+        <div class="text">
+          <h2 class="name" v-html="currentSong.name"></h2>
+          <p class="desc" v-html="(currentSong.ar && currentSong.ar[0].name) || (currentSong.artists && currentSong.artists[0].name)"></p>
+        </div>
+        <div class="control">
+          <i class="icon icon-mini" v-if="playing">&#xe60a;</i>
+          <i class="icon icon-mini" v-else>&#xe606;</i>
+        </div>
+        <div class="control">
+          <i class="icon">&#xe718;</i>
+        </div>
+        <div class="control">
+          <i class="icon">&#xe927;</i>
+        </div>
+        <div class="bottom-progress-bar">
+          <div class="bottom-progress" :style="{width: (currentTime / duration).toFixed(3)*100 + '%'}"></div>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'play'
+  name: 'play',
+  data () {
+    return {
+      playList: [1],
+      currentSong: {},
+      fullScreen: false,
+      playing: false,
+      cdCls: 'play',
+      currentTime: 3,
+      duration: 2
+    }
+  },
+  methods: {
+    open() {},
+    enter() {},
+    afterEnter() {},
+    leave() {},
+    afterLeave() {},
+    back() {}
+  },
 }
 </script>
 
@@ -75,4 +121,81 @@ export default {
         text-align center
         font-size 14px
         color #ffffff   
+  .mini-player
+    display flex
+    align-items center
+    position fixed
+    left 0
+    bottom px2rem(5px)
+    z-index 180
+    width 100%
+    height px2rem(105px)
+    background #ea2448
+    &.mini-enter-active,
+    &.mini-leave-active
+      transition all 0.4s
+    &.mini-enter,
+    &.mini-leave-to 
+      opacity 0
+    .picture
+      flex 0 0 px2rem(80px)
+      width px2rem(80px)
+      height px2rem(80px)
+      padding 0 px2rem(20px) 0 px2rem(20px)
+      .imgWrapper
+        width 100%
+        height 100%
+        img 
+          border-radius 50%
+          &.play
+            animation rotate 10s linear infinite
+          &.pause
+            animation-play-state paused
+    .text
+      display flex
+      flex-direction column
+      justify-content center
+      flex 1
+      line-height px2rem(40px)
+      overflow hidden
+      .name
+        margin-bottom 2px
+        text-overflow ellipsis
+        overflow hidden
+        font-size 14px
+        white-space nowrap
+        color #ffffff
+      .desc
+        text-overflow ellipsis
+        overflow hidden
+        white-space nowrap
+        font-size 12px 
+        color hsla(0, 0%, 100%, 0.3)
+    .control
+      flex 0 0 px2rem(60px)
+      width px2rem(60px)
+      text-align center
+      padding 0 px2rem(20px)
+      .icon
+        font-size 30px
+        color #ffffff
+    .bottom-progress-bar
+      position fixed
+      left 0
+      right 0
+      bottom 0
+      height px2rem(6px)
+      background #fe7498
+      .bottom-progress
+        height 100%
+        background linear-gradient(#902541, #902444)   
+
+@keyframes rotate 
+  0% 
+    transform rotate(0)
+  
+  100% 
+    transform rotate(360deg)
+  
+
 </style>
