@@ -5,7 +5,6 @@ const state = {
   showSidebar: false,
   fullScreen: false,
   searchHistory: []
-  // playlist,
 }
 
 const mutations = {
