@@ -136,7 +136,7 @@
 
 <script>
 import scroll from '@/components/scroll'
-import lyric from 'lyric-parser'
+import Lyric from 'lyric-parser'
 import api from '@/api'
 import { playerMixin } from '@/common/mixin'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
@@ -150,9 +150,14 @@ export default {
   mixins: [playerMixin],
   data () {
     return {
-      currentTime: 3,
-      duration: 1,
-      playingLyric: '我叹服你的技巧'
+      currentTime: 0,
+      duration: 0,
+      playingLyric: '我叹服你的技巧',
+      pureMusicLyric: '',
+      isPureMusic: false,
+      currentLyric: null,
+      currentLyricNum: 0,
+      currentShow: 'cd'
     }
   },
   computed: {
@@ -172,6 +177,34 @@ export default {
     'v-scroll': scroll
   },
   methods: {
+    format (interval) {
+      interval = interval | 0
+      const minute = interval / 60 | 0
+      const second = this._pad(interval % 60)
+      return `${minute}:${second}`
+    },
+    _pad (num, n = 2) {
+      let len = num.toString().length
+      while (len < n) {
+        num = '0' + num
+        len ++
+      }
+
+      return num
+    },
+    changeMode () {},
+    prev() {},
+    togglePlaying() {
+      if (!this.songReady) {
+        return 
+      }
+      this.setPlaying(!this.playing)
+      if (this.currentLyric) {
+        this.currentLyric.togglePlay()
+      }
+    },
+    next() {},
+    showPlaylist() {},
     open () {
       this.setFullScreen(true)
     },
@@ -185,9 +218,124 @@ export default {
     middleTouchStart () {},
     middleTouchMove () {},
     middleTouchEnd () {},
+    // 获取歌词
+    getLyric (id) {
+      api.MusicLyric(id).then(res => {
+        if (res.code === 200) {
+          this.currentLyric = new Lyric(res.lrc.lyric, this.handleLyric)
+          this.isPureMusic = !this.currentLyric.lines.length 
+          if (this.isPureMusic) {
+            this.pureMusicLyric = this.currentLyric.lrc.replace(timeExp, '').trim()
+            this.playingLyric = this.pureMusicLyric
+          } else {
+            if (this.playing && this.canLyricPlay) {
+              // 用户播放了歌曲, 切换到对应的位置
+              this.currentLyric.seek(this.currentTime * 1000)
+            }
+          }
+        }
+      })
+    },
+    syncWrapperTransform(wrapper, inner) {
+      if (!this.$refs[wrapper]) {
+        return
+      }
+      let imageWrapper = this.$refs[wrapper]
+      let image = this.$refs[inner]
+      let wTransform = getComputedStyle(imageWrapper)[transform]
+      let iTransform = getComputedStyle(image)[transform]
+      imageWrapper.style[transform] = wTransform === 'none' ? iTransform : iTransform.concat(' ', wTransform)
+    },
     ...mapMutations({
       setFullScreen: 'SET_FULL_SCREEN'
-    })
+    }),
+    ...mapActions([
+      'savePlayHistory'
+    ]),
+    error() {
+      clearTimeout(this.timer)
+      this.songReady = true
+    },
+    updateTime (e) {
+      this.currentTime = e.target.currentTime
+    },
+    end () {
+      this.currentTime = 0
+      this.next()
+    },
+    paused () {
+      this.setPlaying(false)
+      if (this.currentLyric) {
+        this.currentLyric.stop()
+      }
+    },
+    ready () {
+      clearTimeout(this.timer)
+      // 监听playing事件确保慢网速或者快速切换歌曲导致的 DOM Exception
+      this.songReady = true
+      this.canLyricPlay = true
+      this.duration = this.$refs.audio.duration
+      this.savePlayHistory(this.currentSong)
+      // 如果歌曲的播放晚于歌词的出现，播放的时候需要同步歌词
+      if (this.currentLyric && !this.isPureMusic) {
+        this.currentLyric.seek(this.currentTime * 1000)
+      }
+    }
+  },
+  watch: {
+    async currentSong(newSong, oldSong) {
+      if (!newSong.id || newSong.id === oldSong.id) {
+        return
+      }
+      if (!newSong.url) {
+        const { data, code } = await api.MusicUrl(newSong.id)
+        if (data && code === 200) {
+          newSong = {...newSong, url:data[0].url}
+        } else {
+          alert('请求音乐出错')
+        }
+      }
+      this.songReady = false
+      this.canLyricPlay = false
+      if (this.currentLyric) {
+        this.currentLyric.stop()
+        this.currentLyric = null
+        this.currentTime = 0
+        this.playingLyric = ''
+        this.currentLyricNum = 0
+      }
+      this.$refs.audio.src = newSong.url
+      this.$refs.audio.play()
+      // 如果歌曲超过5s未播放, 则认为超时, 修改状态确保可以播放
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        this.songReady = true
+      }, 5000)
+      this.getLyric(newSong.id) 
+    },
+    playing (newPlaying) {
+      if (!this.songReady) {
+        return
+      }
+      const audio = this.$refs.audio
+      this.$nextTick(() => {
+        newPlaying ? audio.play() : audio.pause()
+      })
+      if (!newPlaying) {
+        if (this.fullScreen) {
+          this.syncWrapperTransform('imageWrapper', 'image')
+        } else {
+          this.syncWrapperTransform('miniWrapper', 'miniImage')
+        }
+      }
+    },
+    fullScreen (newVal) {
+      if (newVal) {
+        setTimeout(() => {
+          this.$refs.lyricList.refresh()
+        }, 20)
+      }
+    }
   }
 }
 </script>
