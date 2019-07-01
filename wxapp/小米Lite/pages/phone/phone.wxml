@@ -1,0 +1,26 @@
+<!--pages/phone/phone.wxml-->
+<view class="container">
+  <scroll-view>
+    <swiper autoplay="true" class="img" interval="5000" duration="500" indicator-dots="true" indicator-color="rgba(0,0,0,0.1)" indicator-active-color="#fffffb">
+      <block wx:for="{{imgUrls}}" wx:key="index" >
+        <swiper-item>
+            <image src="{{item}}" class="slide-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <block wx:for="{{phone}}" wx:key="index">
+      <view class="text1">{{item.select}}</view>
+      <navigator class="{{item.shopping.id == 0 ? big : little }}" url="../detail/detail">
+        <!-- <image class="{{item.shopping.id == 0 ? big1 : little1 }}" src="{{item.shopping.url}}" /> -->
+        <!-- <text class="{{item.shopping.id == 0 ? big2 : little2 }}">{{item.shopping.name}}</text>
+        <text class="{{item.shopping.id == 0 ? big3 : little3 }}">{{item.shopping.desc}}</text>
+        <view class="{{item.shopping.id == 0 ? big4 : little4 }}">
+          <text class="">{{item.shopping.newPrice}}元起</text>
+          <text wx-if="{{item.shopping.oldPrice !== null}}">{{item.shopping.oldPrice}}元起</text>     
+        </view>
+        <view class="{{item.shopping.id == 0 ? big5 : little5 }}" >立即购买</view> -->
+      </navigator>
+    </block>
+      
+  </scroll-view>
+</view>

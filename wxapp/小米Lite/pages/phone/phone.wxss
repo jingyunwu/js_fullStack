@@ -1,0 +1,27 @@
+/* pages/phone/phone.wxss */
+.container {
+  height: 100%;
+  width: 100%;
+  background: #e6e8fa;
+}
+.container .img {
+  width: 100%;
+  height: 200px;
+}
+.slide-image {
+  width: 100%;
+  height: 200px;
+}
+.container .text1 {
+  font-size: 18px;
+  margin: 10px auto 10px auto;
+  color: #664ace;
+  width: 140px;
+  height: 30px;
+  text-align: center;
+}
+.big {
+  width: 400px;
+  height: 500px;
+  background: red; 
+}

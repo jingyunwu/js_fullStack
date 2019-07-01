@@ -11,50 +11,58 @@ Page({
     ],
     items: [
       {
-        imgUrl: '',
-        channel: '手机'
+        imgUrl: '../../images/phone.png',
+        channel: '手机',
+        url: '../phone/phone',
       },
       {
-        imgUrl: '',
-        channel: '电视'
+        imgUrl: '../../images/phone.png',
+        channel: '电视',
+        url: '../phone/phone',
       },
       {
-        imgUrl: '',
-        channel: '电脑'
+        imgUrl: '../../images/phone.png',
+        channel: '电脑',
+        url: '../phone/phone',
       },
       {
-        imgUrl: '',
-        channel: '智能'
+        imgUrl: '../../images/phone.png',
+        channel: '智能',
+        url: '../phone/phone',
       },
       {
-        imgUrl: '',
-        channel: '家电'
+        imgUrl: '../../images/phone.png',
+        channel: '家电',
+        url: '../phone/phone',
       },
       {
-        imgUrl: '',
-        channel: '新品'
+        imgUrl: '../../images/phone.png',
+        channel: '新品',
+        url: '../phone/phone',
       },
       {
-        imgUrl: '',
-        channel: '小米众筹'
+        imgUrl: '../../images/phone.png',
+        channel: '小米众筹',
+        url: '../phone/phone',
       },
       {
-        imgUrl: '',
-        channel: '以旧换新'
+        imgUrl: '../../images/phone.png',
+        channel: '以旧换新',
+        url: '../phone/phone',
       },
       {
-        imgUrl: '',
-        channel: '1分拼团'
+        imgUrl: '../../images/phone.png',
+        channel: '1分拼团',
+        url: '../phone/phone',
       },
       {
-        imgUrl: '',
-        channel: '每日臻选'
+        imgUrl: '../../images/phone.png',
+        channel: '每日臻选',
+        url: '../phone/phone',
       }
 
     ]
     
   },
   //事件处理函数
- 
-
 })

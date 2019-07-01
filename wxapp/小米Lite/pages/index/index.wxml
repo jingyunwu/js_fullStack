@@ -6,18 +6,20 @@
         <icon class="search-icon" type="search" size="15" /> 搜索商品
       </view>
     </view>
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="5000" duration="500" indicator-dots="true" indicator-color="rgba(0,0,0,0.1)" indicator-active-color="#fffffb">
+    <swiper autoplay="true" interval="5000" duration="500" indicator-dots="true" indicator-color="rgba(0,0,0,0.1)" indicator-active-color="#fffffb">
       <block wx:for="{{imgUrls}}" wx:key="index">
         <swiper-item>
           <image src="{{item}}" class="slide-image" />
         </swiper-item>
       </block>
     </swiper>
-    <view class="channel">
-      <view class="channel-item" wx:for="{{items}}" wx:key="index">
-        <image class="channel-image" src="{{item.imgUrl}}" />
-         <text class="channel-name">{{item.channel}}</text> 
-      </view>
+    <view class="channels">
+      <block wx:for="{{items}}" wx:key="index">
+        <navigator class="nav" url="{{item.url}}" >
+            <image class="channel-image" src="{{item.imgUrl}}" />
+            <text class="channel-name">{{item.channel}}</text> 
+        </navigator>  
+      </block>
     </view>
   </scroll-view>
 </view>
