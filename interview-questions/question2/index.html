@@ -23,6 +23,19 @@
     // b.apply(a, [1, 1])
     var c = b.bind(a, 5)
     c(4, 3)
+    // call方法的实现原理
+    Function.prototype.call = function () {
+      let [thisArg, ...args] = [...arguments]
+      if (!thisArg) {
+        thisArg = typeof window === 'undefind' ? global : window
+      }
+      // this的指向是当前函数 func.call
+      thisArg.func = this
+      // 执行函数
+      let result = thisArg.func(...args)
+      delete thisArg.func // thisArg上并没有 func 属性，因此需要移除
+      return result
+    }
   </script>
 </body>
 </html>
