@@ -8,7 +8,41 @@
         </swiper-item>
       </block>
     </swiper>
-    <view class="text1">爆款推荐</view>
+    <block wx:for="{{phone}}" wx:key="index" wx:for-item="phone">
+      <view class="text1">{{phone.select}}</view>
+      <block wx:for="{{phone.goods}}" wx:key="index" wx:for-index="idx" wx:for-item="goods" data-id="{{goods.id}}" bindtap='goDetails'>
+        <view class="big" wx:if="{{idx === 0}}">
+          <image class="big_img" src="{{goods.url}}"/>
+          <view class="big1">
+            <view class="big2">
+              <text class="big_name" >{{goods.name}}</text>
+              <text class="big_desc" >{{goods.desc}}</text>
+            </view>
+            <view class="big3">
+              <text class="big_newPrice" >{{goods.newPrice}}元起</text>
+              <text wx:if="{{goods.oldPrice}}" class="big_oldPrice">{{goods.oldPrice}}元起</text>
+              <view class="big_buy" >立即购买</view>
+            </view>
+          </view>
+        </view>
+        <view class="little" wx:else>
+          <image class="little_img" src="{{goods.url}}"/>
+          <!-- <view class="little1">
+            <text class="little_name" >{{goods.name}}</text>
+            <text class="little_desc" >{{goods.desc}}</text>
+            <text class="little_newPrice" >{{goods.newPrice}}元起</text>
+            <text wx:if="{{goods.oldPrice}}" class="little_oldPrice">{{goods.oldPrice}}元起</text>
+            <view class="little_buy" >立即购买</view>
+          </view> -->
+        </view>
+        
+          
+      </block>
+        
+    </block>
+      
+
+    
       
         
   
