@@ -42,5 +42,8 @@
   es6的Set方法   数组的indexOf方法   数组的includes方法  map方法  reduce+includes
 
 # q6. 防抖节流函数原理
+
+# q7. __proto__  和  prototype 关联
+  __proto__ 是每一个实例都有的属性，可以访问[prototype]属性，实例的 __proto__ 与其构造函数的prototype指向的是同一个对象
    
      
