@@ -27,13 +27,15 @@
         </view>
         <view class="little" wx:else>
           <image class="little_img" src="{{goods.url}}"/>
-          <!-- <view class="little1">
+          <view class="little1">
             <text class="little_name" >{{goods.name}}</text>
             <text class="little_desc" >{{goods.desc}}</text>
-            <text class="little_newPrice" >{{goods.newPrice}}元起</text>
-            <text wx:if="{{goods.oldPrice}}" class="little_oldPrice">{{goods.oldPrice}}元起</text>
+            <view class="little2">
+              <text class="little_newPrice" >{{goods.newPrice}}元起</text>
+              <text wx:if="{{goods.oldPrice}}" class="little_oldPrice">{{goods.oldPrice}}元起</text>
+            </view>
             <view class="little_buy" >立即购买</view>
-          </view> -->
+          </view>
         </view>
         
           
