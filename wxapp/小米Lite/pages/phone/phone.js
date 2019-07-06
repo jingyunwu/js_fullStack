@@ -239,6 +239,14 @@ Page({
     ]
 
   },
+  goDetails: function (e) {
+    // console.log(e);
+    let that = this;
+    const id = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url:'../detail/detail?id='+ that.data.phone[id].id
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载

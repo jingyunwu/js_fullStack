@@ -120,7 +120,7 @@
   font-size: 13px;
 }
 .little1 .little2 {
-
+  margin-bottom: 3px;
 }
 .little2 .little_newPrice {
   color: #e65a60;

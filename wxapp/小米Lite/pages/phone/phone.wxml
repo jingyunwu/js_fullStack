@@ -10,8 +10,8 @@
     </swiper>
     <block wx:for="{{phone}}" wx:key="index" wx:for-item="phone">
       <view class="text1">{{phone.select}}</view>
-      <block wx:for="{{phone.goods}}" wx:key="index" wx:for-index="idx" wx:for-item="goods" data-id="{{goods.id}}" bindtap='goDetails'>
-        <view class="big" wx:if="{{idx === 0}}">
+      <block wx:for="{{phone.goods}}" wx:key="index" wx:for-index="idx" wx:for-item="goods" >
+        <view class="big" wx:if="{{idx === 0}}" bindtap="goDetails" data-id="{{idx}}" >
           <image class="big_img" src="{{goods.url}}"/>
           <view class="big1">
             <view class="big2">
@@ -25,7 +25,7 @@
             </view>
           </view>
         </view>
-        <view class="little" wx:else>
+        <view class="little" wx:else bindtap="goDetails" data-id="{{idx}}">
           <image class="little_img" src="{{goods.url}}"/>
           <view class="little1">
             <text class="little_name" >{{goods.name}}</text>

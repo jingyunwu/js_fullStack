@@ -1,12 +1,13 @@
 {
   "pages": [
+    "pages/detail/detail",
     "pages/phone/phone",
     "pages/index/index",
     "pages/categories/categories",
     "pages/discovery/discovery",
     "pages/cart/cart",
-    "pages/mine/mine",
-    "pages/detail/detail"
+    "pages/mine/mine"
+    
     
   ],
   "window": {
