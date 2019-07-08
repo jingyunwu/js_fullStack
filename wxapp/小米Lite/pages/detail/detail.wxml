@@ -1,6 +1,14 @@
 <!--pages/detail/detail.wxml-->
-<view class="" >
-  
+<view class="container" >
+  <scroll-view>
+    <swiper autoplay="true" class="img" interval="5000" duration="500" indicator-dots="true" indicator-color="rgba(0,0,0,0.1)" indicator-active-color="#fffffb">
+      <block wx:for="{{imgUrls}}" wx:key="index" >
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </scroll-view>
 </view>
 
   
