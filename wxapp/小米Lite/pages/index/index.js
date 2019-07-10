@@ -16,47 +16,47 @@ Page({
         url: '../phone/phone',
       },
       {
-        imgUrl: '../../images/phone.png',
+        imgUrl: '../../images/TV.png',
         channel: '电视',
         url: '../phone/phone',
       },
       {
-        imgUrl: '../../images/phone.png',
+        imgUrl: '../../images/computer.png',
         channel: '电脑',
         url: '../phone/phone',
       },
       {
-        imgUrl: '../../images/phone.png',
+        imgUrl: '../../images/zhineng.png',
         channel: '智能',
         url: '../phone/phone',
       },
       {
-        imgUrl: '../../images/phone.png',
+        imgUrl: '../../images/jiadian.png',
         channel: '家电',
         url: '../phone/phone',
       },
       {
-        imgUrl: '../../images/phone.png',
+        imgUrl: '../../images/huangguan.png',
         channel: '新品',
         url: '../phone/phone',
       },
       {
-        imgUrl: '../../images/phone.png',
+        imgUrl: '../../images/clock.png',
         channel: '小米众筹',
         url: '../phone/phone',
       },
       {
-        imgUrl: '../../images/phone.png',
+        imgUrl: '../../images/huan.png',
         channel: '以旧换新',
         url: '../phone/phone',
       },
       {
-        imgUrl: '../../images/phone.png',
+        imgUrl: '../../images/1feng.png',
         channel: '1分拼团',
         url: '../phone/phone',
       },
       {
-        imgUrl: '../../images/phone.png',
+        imgUrl: '../../images/zuanshi.png',
         channel: '每日臻选',
         url: '../phone/phone',
       }
