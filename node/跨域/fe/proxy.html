@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    document.cookie = 'name=helloCors';
+    // X-custom: 'abc'
+    // 补充当前的域名：端口号
+    // 8080
+    fetch('/api/post', {
+      headers: {
+        'X-custom': 'abc'
+      },
+      credentials: 'include'
+    })
+     .then(res => res.json())
+     .then(res => {
+       console.log('请求结果', res)
+      })
+  </script>
+</body>
+</html>
