@@ -15,3 +15,5 @@ var quickSort = function(arr) {
   　　}//递归执行以上操作,对左右两个数组进行操作，直到数组长度为<=1； 
   　　return quickSort(left).concat([pivot], quickSort(right));
   }
+console.log(quickSort([2, 6, 3, 7]))
+
