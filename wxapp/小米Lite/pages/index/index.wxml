@@ -1,11 +1,13 @@
 <!--index.wxml-->
 <view class="container">
   <scroll-view>
+    <!-- 搜索 -->
     <view class="header">
       <view class="search">
         <icon class="search-icon" type="search" size="15" /> 搜索商品
       </view>
     </view>
+    <!-- 轮播图 -->
     <swiper autoplay="true" interval="5000" duration="500" indicator-dots="true" indicator-color="rgba(0,0,0,0.1)" indicator-active-color="#fffffb">
       <block wx:for="{{imgUrls}}" wx:key="index">
         <swiper-item>
@@ -13,6 +15,7 @@
         </swiper-item>
       </block>
     </swiper>
+    <!-- 分类 -->
     <view class="channels">
       <block wx:for="{{items}}" wx:key="index">
         <navigator class="nav" url="{{item.url}}" >
@@ -21,5 +24,6 @@
         </navigator>  
       </block>
     </view>
+
   </scroll-view>
 </view>
