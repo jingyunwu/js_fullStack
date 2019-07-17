@@ -51,10 +51,60 @@
     autoRun(test1);
     autoRun(test);
 
-    (async function() {
-      let a = await 1;
-      let b = await 2;
-    })()
+    function autoRun1(generateFun) {
+      var g = generateFun();
+      function next(data) {
+        var result = g.next(data);
+        if (result.done) return;
+        next(result.value);
+      }
+      next()
+    }
+
+    // (async function() {
+    //   let a = await 1;
+    //   let b = await 2;
+    // })()
+
+    let fooPromise = function() {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {resolve('fooPromise')}, 1000)
+      })
+    }
+    let barPromise = function() {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {resolve('barPromise')}, 1000)
+      })
+    }
+    _asyncToGenerator(
+      function* () {
+        let a = yield fooPromise();
+        console.log('_asyncToGenerator a', a);
+        let c = yield barPromise();
+        console.log('_asyncToGenerator c', c);
+        let b = yield 2;
+        console.log('_asyncToGenerator b', b);
+      }
+    )
+    function _asyncToGenerator(generateFun) {
+      return new Promise((resolve, reject) => {
+        let gen = generateFun();
+        // key === next
+        function step(key, arg) {
+          let info = {};
+          // info = { value, done }
+          info = gen[key](arg);
+          if (info.done) {
+            resolve()
+          } else {
+            return Promise.resolve(info.value).then((v) => {
+              return step('next', v);
+            })
+          }
+        }
+        step('next');
+      })
+    }
   </script>
 </body>
 </html>

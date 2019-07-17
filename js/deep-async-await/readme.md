@@ -26,4 +26,9 @@ function* test () {
     test: /\.js$/
     use: ['babel-loader']
   }
-  .babel
+  .babelrc
+
+  ## Promise.resolve
+  返回一个  Promise
+  1. 如果是 一个 promise 返回应该 promise
+  2. 如果是一个基本类型的值  resolve(该值)
