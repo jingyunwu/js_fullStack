@@ -12,23 +12,49 @@
       console.log(789);
       return 789;
     }
-    function* test () {
+    function* test() {
       console.log(1);
       let a = yield foo();
       console.log('a', a);
       let b = yield 2;
+      // yield 2 => 10 let b = 10
       console.log('b', b);
       let c = yield 3;
       console.log('c', c);
     }
     // 惰性的
     var g = test();
-    // 生成一个  对象 { next }
+    let gn = g.next();
+    while(!gn.done) {
+      gn = g.next(gn.value);
+    }
+    // 生成一个 对象 { next }
     // 调用 next 一步一步执行
     // g.next()
     // g.next()
     // g.next()
-    // 调用g.next(10)传参后 a = 10
+
+    // 让 generate 函数 自己全部执行完；
+    function* test1() {
+      let a = yield true;
+      console.log('a', a);
+      let b = yield 1000;
+      console.log('b', b);
+    }
+    function autoRun(generateFun) {
+      let g = generateFun();
+      let gn = g.next();
+      while(!gn.done) {
+        gn = g.next(gn.value);
+      }
+    }
+    autoRun(test1);
+    autoRun(test);
+
+    (async function() {
+      let a = await 1;
+      let b = await 2;
+    })()
   </script>
 </body>
 </html>

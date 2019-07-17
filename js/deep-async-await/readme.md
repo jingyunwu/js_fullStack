@@ -19,3 +19,11 @@ function* test () {
   ```
   通过 g.next() 一步一步调用
   每一步调用 执行到 yield 关键词
+  通过传参  做可做为上一个 yield 语句的返回值
+
+  ## 
+  {
+    test: /\.js$/
+    use: ['babel-loader']
+  }
+  .babel
