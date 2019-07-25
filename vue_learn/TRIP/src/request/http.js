@@ -62,4 +62,35 @@ var request = (options) => {
   })
 }
 
+// http请求方式
+export const http = {}
+const methods = ['get', 'post', 'put', 'delete']
+methods.forEach(method => {
+  http[method] = (url, params = {}) => {
+    if(method === 'get') {
+      return request({ url, params, method })
+    }
+    return request({ url, body: stringify(params), method})
+  }
+})
+
+export default function plugin (Vue) {
+  if(plugin.installed) {
+    return
+  }
+  plugin.installed = true
+  Object.defineProperties(Vue.prototype, {  // defineProperties方法是直接在一个对象上新增属性或者修改原有属性，并返回最新的对象
+    $http: {
+      get() {
+        const obj = {
+          get: http['get'],
+          post: http['post'],
+          put: http['put'],
+          delete: http['delete']
+        }
+        return obj
+      }
+    }
+  })
+}
 
