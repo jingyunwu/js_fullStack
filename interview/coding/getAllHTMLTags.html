@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  <script>
+    function getAllHTMLTags() {
+      const tags = [...document.querySelectorAll('*')].map(dom => dom.tagName);
+      console.log(tags);
+      // 统计出现的频率？
+      // 用json存储
+      const mapper = {};
+      for( let i = 0; i < tags.length; i++) {
+        const tag = tags[i];
+        if(mapper[tag] === void 0) {
+          mapper[tag] = 1;
+        } else {
+          mapper[tag] += 1;
+        }
+      }
+      // 对象 => 变成数组的
+      // 对象(Object) => 变成数组的(es6) => sort  a.tag-b.tag
+      return Object.entries(mapper).sort((a, b) => b[1] - a[1]).map(q => q[0]);
+    }
+    console.log(getAllHTMLTags());
+  </script>
+</body>
+</html>
