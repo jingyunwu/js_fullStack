@@ -66,7 +66,7 @@
       hash.set(obj, t)
       for (let key in obj) {
         // 递归
-        if (obj.hasOwnProperty(key)) { // 是否是自身的属性
+        if (obj.hasOwnProperty(obj[key])) { // 是否是自身的属性
           t[key] = deepClone(obj[key], hash) 
         }
       }
