@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>怎么画0.5px的边框</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    .content { 
+      width: 200px;
+      height: 200px;
+      border: 1px solid red;
+      margin-left: 300px;
+      margin-top: 300px;
+    }
+    .content1 {
+      width: 100px;
+      height: 100px;
+      position: relative;
+      margin-left: 50px;
+      margin-top: 50px;
+    }
+    .content1::before{
+      content: "";
+      position: absolute;
+      border: 1px solid green;
+      transform: scale(.5);
+      box-sizing: border-box;
+      width: 200%;
+      height: 200%;
+      transform-origin: 0 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <div class="content1">大小</div>
+  </div>
+</body>
+</html>
