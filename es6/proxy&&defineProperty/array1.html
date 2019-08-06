@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    Array.prototype.$push = function(...args) {
+      console.log('数组发生变化了');
+      return this.push(...args);
+    }
+    var arr = [0, 1, 2];
+    arr.$push(4);
+
+    var originPop = Array.prototype.pop;
+    Array.prototype.pop = function() {
+      console.log('数组发生了变化 pop');
+      originPop.apply(this, arguments);
+    }
+    arr.pop();
+
+    var arrMethods = ['push', 'pop', 'shift', 'unshift', 'splice']
+    arrMethods.forEach((methodName) => {
+      let originMethod = Array.prototype[methodName];
+      Array.prototype[methodName] = function() {
+        console.log('改变了');
+        return originMethod.apply(this, arguments);
+      }
+    });
+    arr.unshift('9');
+  </script>
+</body>
+</html>
