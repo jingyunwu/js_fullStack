@@ -95,3 +95,22 @@
     sessionStorage: 仅在当前浏览器窗口关闭前有效，不能长久保存
 
     localStorage: 在所有的同源窗口都是共享的，cookie也是在同源窗口中是共享的，localStorage的大小在5M左右
+
+# q19  任务列表 (event loop)
+  marcotask(宏观任务):
+    setTimeout
+    setInterval
+    requestAnimationFrame
+    HTML的解析
+    js的主线程
+    页面加载
+    用户交互
+  mircotask(微观任务):
+    promise
+    mutation.oberver
+    process.nextTick
+
+  script(主程序代码) --->  process.nextTick  --->  promise ---> setTimeout --->  setInterval
+  ---> setImmediate ---> I/O ---> UI rendeing
+
+
