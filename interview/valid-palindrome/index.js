@@ -1,6 +1,6 @@
 // 'aba'   回文串
 function validPalindrome(str) {
-  if (!str || typeof str != 'string' ) return false;
+  if (!str || typeof str !== 'string' ) return false;
   return str.split('').reverse().join('') === str;
 }
 console.log(validPalindrome('aba'));  

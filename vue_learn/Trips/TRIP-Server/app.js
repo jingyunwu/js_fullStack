@@ -10,7 +10,7 @@ var looger = require('morgan');
 var indexRouter = require('./routes/index')
 
 // 引入user.js 路由配置文件
-var userRouter = require('./routes/user.js')
+var userRouter = require('./routes/user.js.js')
 
 var app = express()  // 用express创建一个应用
 
