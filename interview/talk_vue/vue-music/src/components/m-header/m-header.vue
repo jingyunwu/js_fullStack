@@ -2,7 +2,7 @@
   <div class="m-header">
     <h1 class="text">VMUSIC</h1>
     <router-link to="/user" class="mine" tag="div">
-      <i class="iconfont icon-search"></i>
+      <i class="iconfont icon-list"></i>
     </router-link>
     <router-link to="/search" class="search" tag="div">
       <i class="iconfont icon-search"></i>
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'm-header',
+  
 
 }
 </script>
@@ -25,7 +25,7 @@ export default {
   height: 44px;
   width: 100%;
   text-align: center;
-  // background: $color-theme;
+  background: $color-theme;
   .text {
     line-height: 44px;
     font-weight: bold;

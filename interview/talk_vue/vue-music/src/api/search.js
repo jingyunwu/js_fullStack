@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {HOST} from 'common/js/config'
+import {HOST} from '../common/js/config'
 
 export function getSearchSinger (name) {
   const url = HOST + `/search?keywords=${name}&type=100`
