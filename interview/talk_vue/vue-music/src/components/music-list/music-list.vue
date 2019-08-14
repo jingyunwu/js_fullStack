@@ -3,8 +3,9 @@
     
   </div>
 </template>
+
 <script>
 export default {
-  name: 'tab'
+  name: 'music-list'
 }
 </script>

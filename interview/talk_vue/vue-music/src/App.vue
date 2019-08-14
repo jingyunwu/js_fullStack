@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <m-header></m-header>
-    <tab></tab>
+    <MHeader></MHeader>
+    <Tab></Tab>
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
-    <player></player>
+    <Player></Player>
   </div>
 </template>
 
@@ -48,7 +48,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import 'common/scss/index.scss';
+@import './common/scss/index';
 #app {
   position: fixed;
   top: 0;
