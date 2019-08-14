@@ -1,13 +1,42 @@
 <template>
   <div id="app">
-    
-    <router-view/>
+    <div class="box">
+      <transition name="fademap">
+        <router-view/>
+      </transition>
+      
+    </div>
+    <btmNav></btmNav>
   </div>
 </template>
 
 <script>
+import btmNav from '@/views/bottom_nav/btmNav'
+import { mapActions } from 'vuex'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    btmNav: btmNav
+  },
+  mounted () {
+    // 验证本地是否已经登录过
+    let tmpUser = localStorage.getItem('user')
+    if (tmpUser) {
+      this.setUser(JSON.parse(tmpUser))
+      // 请求用户里程数据
+      this.allDistanceAjax()
+    } else {
+      this.$router.push({ path: '/login' })
+    }
+  },
+  methods: {
+    allDistanceAjax () {
+      this.$http.get('/trip/allDistance', {}).then(res => {
+        this.setUserData(res.data.data)
+      })
+    },
+    ...mapActions(['setUser', 'setUserData'])
+  }
 }
 </script>
 

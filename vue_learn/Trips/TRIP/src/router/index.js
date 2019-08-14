@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import { Toast } from 'mand-mobile'
 import User from './module/user'
 import Trip from './module/trip'
+import Test from './module/test'
+import History from './module/history'
 
 Vue.use(Router)
 
@@ -28,7 +30,7 @@ const commonRoutes = [
 // 分模块的路由，合并传入Router
 let router = new Router({
   base:process.env.BASE_URL,
-  routes: commonRoutes.concat(User, Trip)
+  routes: commonRoutes.concat(User, Trip, Test, History)
 })
 
 // 导航守卫，非登录状态先登录
