@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>三栏式布局</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    .left {
+      background-color: red;
+      width: 200px;
+      height: 500px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .right {
+      background-color: blue;
+      width: 150px;
+      height: 500px;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    .main {
+      height: 500px;
+      width: 100%;
+      margin: 0 150px 0 200px;
+      background-color: green;
+    }
+  </style>
+</head>
+<body>
+    <div class="content">
+      <div class="left"></div>
+      <div class="right"></div>
+      <div class="main"></div>
+    </div>
+</body>
+</html>
